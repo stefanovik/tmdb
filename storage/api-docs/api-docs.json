@@ -1,0 +1,141 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Movie Controller",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/movie/list": {
+            "get": {
+                "operationId": "8085792f84cacd06305f1339ecf2dc4d",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movie List",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MovieListDTO"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/movie/{id}": {
+            "get": {
+                "operationId": "93976f7d654059b3cf80bf4884600656",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movie List",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MovieDTO"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "MovieDTO": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "overview": {
+                        "type": "string"
+                    },
+                    "popularity": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "voteAverage": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "voteCount": {
+                        "type": "number",
+                        "format": "float"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "poster": {
+                        "type": "string"
+                    },
+                    "genres": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "MovieListDTO": {
+                "properties": {
+                    "movies": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/MovieListItemDTO"
+                        }
+                    },
+                    "count": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "MovieListItemDTO": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "genres": {
+                        "type": "string"
+                    },
+                    "releaseDate": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
